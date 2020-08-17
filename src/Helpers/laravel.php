@@ -89,7 +89,12 @@ if (!function_exists('set_env')) {
         foreach ($data as $k => $v) {
             array_push($contentArray, $k . '=' . $v);
         }
-        $content = implode($contentArray, "\n");
+        //$content = implode($contentArray, "\n");
+        if (version_compare(PHP_VERSION, '7.4.0', '>=')) {
+            $content = implode("\n", $contentArray);
+        } else {
+            $content = implode($contentArray, "\n");
+        }
         file_put_contents($envPath, $content);
         return true;
     }
