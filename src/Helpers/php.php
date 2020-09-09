@@ -117,7 +117,7 @@ if (!function_exists('array_to_tree')) {
      */
     function array_to_tree($data, $parent_key, $child_key)
     {
-        $tree = [];
+        $tree = array();
         foreach ($data as $key => $val) {
             if ($val[$parent_key] == 0) {
                 $tree[] = &$data[$key];
@@ -147,10 +147,10 @@ if (!function_exists('file_size_format')) {
         }
 
         if ($size < 1024) {
-            return 0;
+            return $size . 'B';
         }
 
-        $unit = ['B', 'KB', 'MB', 'GB'];
+        $unit = array('B', 'KB', 'MB', 'GB');
 
         for ($i = 0; $size >= 1024 && $i <= 4; $i++) {
             $size /= 1024;
